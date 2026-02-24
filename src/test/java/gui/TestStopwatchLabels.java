@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TestStopwatchLabels extends TestGUIAbstract {
 
     @Test
+	@DisplayName("Test de l'état du minuteur après un clic sur 'left' (vérification de l'interface utilisateur)")
 	void testStopwatch1() {
     	c.left(); //simulate clicking on the left button
     	g.updateUI(c); //apply the effect on the user interface
@@ -18,6 +19,7 @@ class TestStopwatchLabels extends TestGUIAbstract {
     }
 
     @Test
+	@DisplayName("Test de l'état du minuteur après un clic sur 'left' puis 'up' (vérification de l'interface utilisateur avec mode 'RunningStopwatch')")
 	void testStopwatch2() {
     	c.left(); //simulate clicking on the left button
     	c.up(); //simulate clicking on the right button

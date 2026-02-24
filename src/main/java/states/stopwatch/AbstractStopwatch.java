@@ -9,7 +9,6 @@ public abstract class AbstractStopwatch extends ClockState {
 	//creation to its initial substate ResetStopwatch
 	public static AbstractStopwatch initialState = ResetStopwatch.Instance();
 	public static AbstractStopwatch historyState;
-
 	// totalTime and lapTime need to be static, since their values
 	// need to be shared between all Stopwatch substates.
 	protected static int totalTime;

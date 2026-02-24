@@ -20,6 +20,7 @@ class TestScenarios {
     
   //This is more a kind of integration test than a real unit test	
   @Test
+  @DisplayName("Test du scénario complet : intégration de plusieurs états et événements")
   void completeScenario() {
 	  assertEquals(IdleTimer.Instance(),c.currentState);
 	  assertEquals(0,AbstractTimer.getMemTimer());

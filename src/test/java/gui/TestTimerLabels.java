@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import states.timer.*;
 
+
 class TestTimerLabels extends TestGUIAbstract {
 
 	void assertTimerLabels(AbstractTimer state) {
