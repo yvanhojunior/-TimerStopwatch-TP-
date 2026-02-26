@@ -1,6 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>umons</groupId>
   <artifactId>TimerStopwatch</artifactId>
   <version>1.1</version>
@@ -10,21 +12,61 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>21</java.version>
-    <junit.version>5.12.1</junit.version>
-    <maven.compiler.version>3.10.1</maven.compiler.version>
-    <maven.surefire.version>3.5.5</maven.surefire.version>
+
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
+
+    <!-- JUnit BOM unique (cohérent) -->
+    <junit.bom.version>5.10.2</junit.bom.version>
+
+    <cucumber.version>7.18.1</cucumber.version>
+
+    <maven.surefire.version>3.5.5</maven.surefire.version>
+    <jacoco.version>0.8.12</jacoco.version>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${junit.bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
+    <!-- JUnit 5 -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- Suite API (@Suite) -->
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Cucumber -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit-platform-engine</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Logging -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -35,25 +77,15 @@
       <artifactId>logback-classic</artifactId>
       <version>1.2.6</version>
     </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>6.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>6.0.0</version>
-    </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <!-- JaCoCo Plugin for coverage analysis -->
+      <!-- JaCoCo -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.12</version>
+        <version>${jacoco.version}</version>
         <executions>
           <execution>
             <goals>
@@ -63,19 +95,24 @@
           <execution>
             <id>report</id>
             <phase>test</phase>
-            <goals><goal>report</goal></goals>
+            <goals>
+              <goal>report</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
+
+      <!-- Surefire -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven.surefire.version}</version>
         <configuration>
-          <reportFormat>html</reportFormat>
+          <useModulePath>false</useModulePath>
         </configuration>
       </plugin>
 
+      <!-- Exec -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -88,7 +125,7 @@
             <phase>install</phase>
             <goals>
               <goal>java</goal>
-             </goals>
+            </goals>
             <configuration>
               <mainClass>ChronometerMain</mainClass>
             </configuration>
@@ -97,5 +134,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
