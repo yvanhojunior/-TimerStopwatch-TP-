@@ -13,7 +13,7 @@ public abstract class ClockState {
     public String getUpText() { return "(unused)"; }
 
     public ClockState right() {return this; } // button 3 pressed (by default do nothing)
-    public String getRightText() { return "(unused)"; }; // text to display on button 3
+    public String getRightText() { return "(unused)"; } // text to display on button 3
         
     public abstract String getDisplayString(); // string to be displayed in GUI
     public abstract Mode getMode(); 
@@ -46,6 +46,11 @@ public abstract class ClockState {
             logger.info("Timer sonne");
         if(!isRigging)
             logger.info("timer ne sonne pas");
-    	return this; } 
+    	return this; }
+
+
+    protected void setRigging(boolean value) {
+        this.isRigging = value;
+    }
        
 }
