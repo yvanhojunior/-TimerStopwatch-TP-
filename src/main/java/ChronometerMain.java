@@ -2,6 +2,8 @@ import gui.SwingGUI;
 import states.Context;
 
 public class ChronometerMain {
+	private static final org.slf4j.Logger logger =
+			org.slf4j.LoggerFactory.getLogger(ChronometerMain.class);
     
 	private SwingGUI g;
 	private Context c;
@@ -15,7 +17,10 @@ public class ChronometerMain {
  		  g.updateUI(c);
     	  while (true) {
     		try { Thread.sleep(frequency); }
-    		catch (InterruptedException e) { e.printStackTrace(); }
+			catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+				logger.error("Chronometer loop interrupted while sleeping", e);
+			}
  	        g.updateUI(c);
  	        c.tick();
   	      }
