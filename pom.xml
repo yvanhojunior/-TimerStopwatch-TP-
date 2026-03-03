@@ -19,7 +19,7 @@
     <!-- JUnit BOM unique (cohérent) -->
     <junit.bom.version>5.10.2</junit.bom.version>
 
-    <cucumber.version>7.18.1</cucumber.version>
+    <cucumber.version>7.34.2</cucumber.version>
 
     <maven.surefire.version>3.5.5</maven.surefire.version>
     <jacoco.version>0.8.12</jacoco.version>
