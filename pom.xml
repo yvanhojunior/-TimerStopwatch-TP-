@@ -22,7 +22,7 @@
     <cucumber.version>7.18.1</cucumber.version>
 
     <maven.surefire.version>3.5.5</maven.surefire.version>
-    <jacoco.version>0.8.12</jacoco.version>
+    <jacoco.version>0.8.14</jacoco.version>
   </properties>
 
   <dependencyManagement>
